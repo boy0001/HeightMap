@@ -4,18 +4,26 @@
     <meta charset="utf-8">
     <title>Demo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://rawgit.com/rvera/image-picker/master/image-picker/image-picker.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://rawgit.com/rvera/image-picker/master/image-picker/image-picker.css">
+    <script src="https://rawgit.com/rvera/image-picker/master/image-picker/image-picker.min.js"></script>
+    <script src="config.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<select class="image-picker show-labels show-html">
-    <option data-img-src="http://placekitten.com/220/200" value="1">Cute Kitten 1</option>
-    <option data-img-src="http://placekitten.com/180/200" value="2">Cute Kitten 2</option>
-    <option data-img-src="http://placekitten.com/130/200" value="3">Cute Kitten 3</option>
-    <option data-img-src="http://placekitten.com/270/200" value="4">Cute Kitten 4</option>
-</select>
-<script>
-    $("select").imagepicker({show_label: true})
-</script>
+<div id="nav">
+    <div id="left">
+        <img id="view" src="" width="256px" height="256px"/>
+    </div>
+    <div id="right">
+        <div class="div-pad"><input type="text" id="command" name="command" value="//brush height %image%" onfocusout="updateView()" onkeydown="if(event.keyCode==13){updateView()}"></div>
+        <div class="div-pad"><input alt="Automatically copied to clipboard" type="text" id="output" name="output" value="<Please select an image>" disabled></div>
+        <div id="alert" hidden><p>Copied to clipboard</p></div>
+    </div>
+</div>
+<div class="padding">t</div>
+<div id="content">
+    <select class="image-picker show-labels show-html">
+    </select>
+</div>
+<script src="index.js"></script>
 </body>
 </html>
