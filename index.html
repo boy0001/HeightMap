@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/rvera/image-picker/master/image-picker/image-picker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/rvera/image-picker/master/image-picker/image-picker.css">
+</head>
+<body>
+<select class="image-picker show-labels show-html">
+    <option data-img-src="http://placekitten.com/220/200" value="1">Cute Kitten 1</option>
+    <option data-img-src="http://placekitten.com/180/200" value="2">Cute Kitten 2</option>
+    <option data-img-src="http://placekitten.com/130/200" value="3">Cute Kitten 3</option>
+    <option data-img-src="http://placekitten.com/270/200" value="4">Cute Kitten 4</option>
+</select>
+<script>
+    $("select").imagepicker({show_label: true})
+</script>
+</body>
+</html>
