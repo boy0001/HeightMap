@@ -9,3 +9,5 @@ Demo: https://boy0001.github.io/HeightMap/
  - Run the command `/heightmapinterface`
  - Copy `plugin/FastAsyncWorldEdit/web/heightmap` to the cloned repository
  - Edit the `config.js`
+ 
+ ![image](https://i.imgur.com/WKwuBlO.jpg)
