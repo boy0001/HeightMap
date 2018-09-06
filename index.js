@@ -12,7 +12,7 @@ function load() {
             path = path.substr(directory.length);
             var index = path.indexOf('/');
             if (index == -1) {
-                add(path);
+                add(directory + path);
             } else {
                 var folder = path.substr(0, index);
                 if (folder in folders) {
@@ -30,11 +30,11 @@ function load() {
         selected: function(select, option, event) {
             var id = select.option[0].getAttribute("id");
             if (id.indexOf('.') == -1) {
-                directory = directory + id + "/";
+                directory = id + "/";
                 history.pushState(history.state, directory, "?" + directory);
                 load();
             } else {
-                url = directory + id;
+                url = id;
                 updateView();
             }
         }
@@ -48,10 +48,11 @@ function add(item) {
     var image = "icons/folder.png";
     if (item.indexOf('.') != -1) {
         image = src_min + item;
+        item = item.substr(1 + item.lastIndexOf('/'));
         var text = item.substr(0, item.lastIndexOf('.')).replace("_", " ").replace( /([A-Z])/g, " $1" );;
         option.text = text;
     } else {
-        option.text = item.replace(" ", "\n");
+        option.text = item;
     }
     option.setAttribute("data-img-src", image);
     select.add(option);
