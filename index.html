@@ -11,12 +11,18 @@
 <body>
 <div id="nav">
     <div id="left">
-        <img id="view" src="" width="256px" height="256px"/>
+        <img id="view" src="" width="200px" height="200px"/>
     </div>
     <div id="right">
-        <div class="div-pad"><input type="text" id="command" name="command" value="//brush height %image%" onfocusout="updateView()" onkeydown="if(event.keyCode==13){updateView()}"></div>
-        <div class="div-pad"><input alt="Automatically copied to clipboard" type="text" id="output" name="output" value="<Please select an image>" disabled></div>
-        <div id="alert" hidden><p>Copied to clipboard</p></div>
+        <div class="div-pad">
+            <h1>Command</h1>
+            <input type="text" id="command" name="command" value='//brush height %image%' onfocusout="updateView()" onkeydown="if(event.keyCode==13){updateView()}">
+        </div>
+        <div class="div-pad">
+            <h1>Output</h1>
+            <input alt="Automatically copied to clipboard" type="text" id="output" name="output" value="<Please select an image>" disabled>
+            <p id="alert" hidden>Copied to clipboard</p>
+        </div>
     </div>
 </div>
 <div class="padding">t</div>

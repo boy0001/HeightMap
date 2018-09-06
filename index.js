@@ -1,6 +1,5 @@
 var url = "(image)";
 var select = document.getElementsByClassName("image-picker")[0];
-select.selectedIndex = -1;
 
 // Load
 function load() {
@@ -25,7 +24,7 @@ function load() {
             }
         }
     }
-
+    select.selectedIndex = -1;
     $("select").imagepicker({
         show_label: true,
         selected: function(select, option, event) {
@@ -47,7 +46,13 @@ function add(item) {
     var option = document.createElement("option");
     option.setAttribute("id", item);
     var image = "icons/folder.png";
-    if (item.indexOf('.') != -1) image = src_min + item;
+    if (item.indexOf('.') != -1) {
+        image = src_min + item;
+        var text = item.substr(0, item.lastIndexOf('.')).replace("_", " ").replace( /([A-Z])/g, " $1" );;
+        option.text = text;
+    } else {
+        option.text = item.replace(" ", "\n");
+    }
     option.setAttribute("data-img-src", image);
     select.add(option);
 }
@@ -113,7 +118,10 @@ function copyToClipboard(elem) {
 function updateView() {
     var input = document.getElementById("command");
     var output = document.getElementById("output");
-    output.value = input.value.replace("%image%", encodeURI(src_local + url));
+    var dest = src_local + url;
+    if (!src_local.startsWith("file://")) dest = encodeURI(dest);
+    else if (dest.indexOf(' ') != -1) dest = '"' + dest + '"';
+    output.value = input.value.replace("%image%", dest);
     copyToClipboard(output);
     document.getElementById("view").setAttribute("src", src_max + url);
 }

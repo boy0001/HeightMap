@@ -1,5 +1,6 @@
 // The images
 var images = [
+    "test/A601B1.png",
     "noiseLow.png",
     "Plains 1.png",
     "plains cliff.png",
