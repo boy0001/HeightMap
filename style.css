@@ -89,8 +89,6 @@ body, div {
 }
 #content {
     padding: 0 10px 0 10px;
-    height: calc(100vh - 212px);;
-    overflow: scroll;
 }
 .block {
     display: block;
