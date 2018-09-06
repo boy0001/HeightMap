@@ -128,6 +128,20 @@ function updateView() {
     copyToClipboard(output);
     view.style.visibility = "visible";
     view.setAttribute("src", src_max + url);
+
+    if (typeof variable !== 'undefined' && prevent_copy) {
+        $('img').on({
+            "contextmenu": function (e) {
+                e.preventDefault();
+            },
+            "mousedown": function (e) {
+                e.preventDefault();
+            },
+            "mouseup": function (e) {
+                e.preventDefault();
+            }
+        });
+    }
 }
 
 load();

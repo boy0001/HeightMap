@@ -119,3 +119,5 @@ var src_min = "https://github.com/boy0001/HeightMap/raw/gh-pages/images/_min/";
 var src_max = "https://github.com/boy0001/HeightMap/raw/gh-pages/images/";
 // The local source for the image (used in commands)
 var src_local = "file://";
+// Prevent image copy
+var prevent_copy = false;
