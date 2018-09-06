@@ -34,7 +34,7 @@ function load() {
                 history.pushState(history.state, directory, "?" + directory);
                 load();
             } else {
-                url = id;
+                url = directory + id;
                 updateView();
             }
         }

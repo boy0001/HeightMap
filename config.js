@@ -111,7 +111,7 @@ var images = [
     "mountainTerraced_3.png",
     "mountainTerraced_4.png",
     "mountainTerraced_5.png",
-    "noiseHigh.png"
+    "noiseHigh.png",
 ];
 // The low res images (they should all be the same size)
 var src_min = "https://github.com/boy0001/HeightMap/raw/gh-pages/images/_min/";
@@ -119,24 +119,3 @@ var src_min = "https://github.com/boy0001/HeightMap/raw/gh-pages/images/_min/";
 var src_max = "https://github.com/boy0001/HeightMap/raw/gh-pages/images/";
 // The local source for the image (used in commands)
 var src_local = "file://";
-
-
-/*
-// Some java code to resive all images in a directory
-String src = <...>;
-int width = 100;
-int height = 100;
-for (File file : new File(src).listFiles()) {
-    if (!file.isFile()) continue;
-    BufferedImage img = MainUtil.readImage(file);
-    BufferedImage scaled = ImageUtil.getScaledInstance(img, width, height, RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);
-    File out = new File(src + File.separator + "min" + File.separator + file.getName());
-    if (out.exists()) out.delete();
-    else out.getParentFile().mkdirs();
-    System.out.println("Writing " + out);
-    ImageIO.write(scaled, "png", out);
-}
- */
-
-
-
