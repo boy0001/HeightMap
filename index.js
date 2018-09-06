@@ -1,9 +1,11 @@
 var url = "(image)";
 var select = document.getElementsByClassName("image-picker")[0];
+var view = document.getElementById("view");
 
 // Load
 function load() {
     var directory = window.location.search.substr(Math.min(window.location.search.length, 1));
+    view.style.visibility = "hidden";
     select.innerHTML = '';
     var folders = {};
     for (var i in images) {
@@ -124,7 +126,8 @@ function updateView() {
     else if (dest.indexOf(' ') != -1) dest = '"' + dest + '"';
     output.value = input.value.replace("%image%", dest);
     copyToClipboard(output);
-    document.getElementById("view").setAttribute("src", src_max + url);
+    view.style.visibility = "visible";
+    view.setAttribute("src", src_max + url);
 }
 
 load();
