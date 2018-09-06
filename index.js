@@ -1,13 +1,57 @@
+var url = "(image)";
 var select = document.getElementsByClassName("image-picker")[0];
-for (var i in images) {
-    var image = images[i];
+select.selectedIndex = -1;
+
+// Load
+function load() {
+    var directory = window.location.search.substr(Math.min(window.location.search.length, 1));
+    select.innerHTML = '';
+    var folders = {};
+    for (var i in images) {
+        var path = images[i];
+        if (path.startsWith(directory)) {
+            path = path.substr(directory.length);
+            var index = path.indexOf('/');
+            if (index == -1) {
+                add(path);
+            } else {
+                var folder = path.substr(0, index);
+                if (folder in folders) {
+                    folders[folder]++;
+                } else {
+                    add(folder);
+                    folders[folder] = 1;
+                }
+            }
+        }
+    }
+
+    $("select").imagepicker({
+        show_label: true,
+        selected: function(select, option, event) {
+            var id = select.option[0].getAttribute("id");
+            if (id.indexOf('.') == -1) {
+                directory = directory + id + "/";
+                history.pushState(history.state, directory, "?" + directory);
+                load();
+            } else {
+                url = id;
+                updateView();
+            }
+        }
+    });
+}
+window.onpopstate = load;
+
+function add(item) {
     var option = document.createElement("option");
-    option.text = image.substr(0, image.lastIndexOf('.'));
-    option.setAttribute("text", i.toString());
-    option.setAttribute("id", image);
-    option.setAttribute("data-img-src", src_min + image);
+    option.setAttribute("id", item);
+    var image = "icons/folder.png";
+    if (item.indexOf('.') != -1) image = src_min + item;
+    option.setAttribute("data-img-src", image);
     select.add(option);
 }
+
 
 function copyToClipboard(elem) {
     var disabled = elem.disabled;
@@ -66,8 +110,6 @@ function copyToClipboard(elem) {
     return succeed;
 }
 
-var url = "(image)";
-
 function updateView() {
     var input = document.getElementById("command");
     var output = document.getElementById("output");
@@ -76,26 +118,4 @@ function updateView() {
     document.getElementById("view").setAttribute("src", src_max + url);
 }
 
-$("select").imagepicker({
-    show_label: true,
-    selected: function(select, option, event) {
-        url = select.option[0].getAttribute("id");
-        updateView();
-    }
-});
-
-/*
-String src = <...>;
-int width = 100;
-int height = 100;
-for (File file : new File(src).listFiles()) {
-    if (!file.isFile()) continue;
-    BufferedImage img = MainUtil.readImage(file);
-    BufferedImage scaled = ImageUtil.getScaledInstance(img, width, height, RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);
-    File out = new File(src + File.separator + "min" + File.separator + file.getName());
-    if (out.exists()) out.delete();
-    else out.getParentFile().mkdirs();
-    System.out.println("Writing " + out);
-    ImageIO.write(scaled, "png", out);
-}
- */
+load();
